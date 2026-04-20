@@ -388,6 +388,146 @@ Authorization: Bearer <admin_dosen_token>
 
 # =======================================
 
+## delete apa yang dipelajari di course
+
+## Endpoint untuk deleted apa yang dipelajari di course tersebut.
+
+### URL
+
+```
+DELETE /api/v1/dosen/course/topic/:topic_id
+```
+
+---
+
+### Headers
+
+```
+Content-Type: application/json
+Authorization: Bearer <admin_dosen_token>
+```
+
+---
+
+### Params
+
+| Field    | Type   | Required |
+| -------- | ------ | -------- |
+| topic_id | string | V        |
+
+---
+
+### 📥 Request Body (row-body)
+
+```json
+None
+```
+
+### Success Response
+
+**Code:** `200 Ok`
+
+```json
+{
+  "message": "Success"
+}
+```
+
+**Code:** `401 Forbidden`
+
+```json
+{
+  "error_message": "unauthorized"
+}
+```
+
+```json
+{
+  "error_message": "Forbidden: admin, dosen only"
+}
+```
+
+**Code:** `404 Not Found`
+
+```json
+{
+  "error_message": "topic id tidak ditemukan"
+}
+```
+
+# =======================================
+
+## edit apa yang dipelajari di course
+
+## Endpoint untuk edit apa yang dipelajari di course tersebut.
+
+### URL
+
+```
+PATCH /api/v1/dosen/course/topic/:topic_id
+```
+
+---
+
+### Headers
+
+```
+Content-Type: application/json
+Authorization: Bearer <admin_dosen_token>
+```
+
+---
+
+### Params
+
+| Field    | Type   | Required |
+| -------- | ------ | -------- |
+| topic_id | string | V        |
+
+---
+
+### 📥 Request Body (row-body)
+
+```json
+{
+  "topics": "string"
+}
+```
+
+### Success Response
+
+**Code:** `201 Created`
+
+```json
+{
+  "message": "Success"
+}
+```
+
+**Code:** `401 Forbidden`
+
+```json
+{
+  "error_message": "unauthorized"
+}
+```
+
+```json
+{
+  "error_message": "Forbidden: admin, dosen only"
+}
+```
+
+**Code:** `404 Not Found`
+
+```json
+{
+  "error_message": "topic id tidak ditemukan"
+}
+```
+
+# =======================================
+
 ## edit apa yang dipelajari di course
 
 ## Endpoint untuk edit apa yang dipelajari di course tersebut.
@@ -432,6 +572,85 @@ Authorization: Bearer <admin_dosen_token>
 ```json
 {
   "message": "Success"
+}
+```
+
+**Code:** `401 Forbidden`
+
+```json
+{
+  "error_message": "unauthorized"
+}
+```
+
+```json
+{
+  "error_message": "Forbidden: admin, dosen only"
+}
+```
+
+**Code:** `404 Not Found`
+
+```json
+{
+  "error_message": "Course id tidak ditemukan"
+}
+```
+
+# =======================================
+
+## ambil data apa yang dipelajari di course
+
+## Endpoint untuk edit apa yang dipelajari di course tersebut.
+
+### URL
+
+```
+GET /api/v1/dosen/course/:course_id/topics
+```
+
+---
+
+### Headers
+
+```
+Content-Type: application/json
+Authorization: Bearer <admin_dosen_token>
+```
+
+---
+
+### Params
+
+| Field     | Type   | Required |
+| --------- | ------ | -------- |
+| course_id | string | V        |
+
+---
+
+### Request Body (row-body)
+
+```json
+None
+```
+
+### Success Response
+
+**Code:** `200 OK`
+
+```json
+{
+  "message": "Success",
+  "data": {
+    [
+    "topic": "name"
+  ],
+  [
+    "topic": "name"
+  ],
+  ...
+  }
+
 }
 ```
 
