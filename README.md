@@ -2497,7 +2497,7 @@ None
 ### URL
 
 ```
-GET /api/v1/dosen/courses
+GET /api/v1/courses
 ```
 
 ---
@@ -2524,8 +2524,10 @@ Content-Type: application/json
 
 ### Request Body (row-data)
 
-```
-None
+```json
+{
+  "user_id": "id_user"/ not required
+}
 ```
 
 ### Success Response
