@@ -730,6 +730,16 @@ None
 
 ---
 
+### Query Params
+
+| Query  | Type   | Required | Keterangan |
+| ------ | ------ | -------- | ---------- |
+| page   | number | x        | default 1  |
+| limit  | number | x        | default 10 |
+| search | string | x        |            |
+
+---
+
 ### Success Response
 
 **Code:** `200 OK`
@@ -808,6 +818,16 @@ None
 
 ---
 
+### Query Params
+
+| Query  | Type   | Required | Keterangan |
+| ------ | ------ | -------- | ---------- |
+| page   | number | x        | default 1  |
+| limit  | number | x        | default 10 |
+| search | string | x        |            |
+
+---
+
 ### Success Response
 
 **Code:** `200 OK`
@@ -816,20 +836,23 @@ None
 {
   "message": "Success",
   "data": {
+    [
     "id": "string",
     "full_name": "string",
     "email": "string",
     "avatar_url": "string",
     "status": "string"
-  },
-  {
+  ],
+  [
     "id": "string",
     "full_name": "string",
     "email": "string",
     "avatar_url": "string",
     "status": "string"
-  },
-  ...
+  ],
+  "page": 1,
+  "limit": 4,
+  "serach": "string",
 }
 ```
 
@@ -1327,29 +1350,6 @@ None
 
 # Membuat course/kelas
 
-### Flow dari membuat course, create coursenya dapat uuid course itu, terus lanjur categorynya, covernya, section, dan materi
-
-### Ketika input course pertama kali, setidaknya satu field keisi auto save ke db dengan status course jadi draft
-
-```json
-{
-  "class_name": "Belajar Backend",
-  "status": "draft"
-}
-```
-
-### dapat response
-
-```json
-{
-  "data": {
-    "id": "course-uuid"
-  }
-}
-```
-
-### setelah semua field jika terisi auto save
-
 ## create course
 
 ## Endpoint untuk buat informasi coursenya.
@@ -1357,7 +1357,7 @@ None
 ### URL
 
 ```
-POST /api/v1/dosen/courses
+POST /api/v1/dosen/course
 ```
 
 ---
@@ -1423,8 +1423,6 @@ None
 }
 ```
 
-### edit tiap field course
-
 # =======================================
 
 ## Edit informasi coursenya
@@ -1459,8 +1457,6 @@ Authorization: Bearer <admin_dosen_token>
 ---
 
 ### Request Body (row-body)
-
-### row body fleksibel boleh apa aja yang tertera buat auto save setiap field
 
 ### set be jangan required
 
@@ -2880,7 +2876,7 @@ None
 {
   "message": "Success",
   "data":
-    [
+    {
         "order": {
             ...,
             ...,
@@ -2905,10 +2901,15 @@ None
             ...,
             }
         },
-        ...
+        "meta": {
+          "page": 1,
+          "limit": 10,
+          "total": 25
+        }
 
 
-    ]
+
+    }
 ```
 
 **Code:** `401 Forbidden`
